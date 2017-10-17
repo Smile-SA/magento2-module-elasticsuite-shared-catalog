@@ -9,7 +9,7 @@
     }
   ],
   "description": "Smile ElasticSuite - Magento B2B Shared Catalog Support.",
-  "homepage": "https://github.com/Smile-SA/module-elasticsuite",
+  "homepage": "https://github.com/Smile-SA/magento2-module-elasticsuite-shared-catalog",
   "keywords": [
     "magento",
     "magento2",
@@ -29,7 +29,7 @@
     "magento/module-catalog-search": ">=100.1.0",
     "magento/module-shared-catalog": "100.0.0",
     "magento/magento-composer-installer": "*",
-    "smile/elasticsuite": ">=2.4.*"
+    "smile/elasticsuite": ">=2.4.0"
   },
   "version": "1.0.0",
   "autoload": {
