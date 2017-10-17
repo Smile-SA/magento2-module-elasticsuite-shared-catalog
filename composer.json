@@ -31,6 +31,9 @@
     "magento/magento-composer-installer": "*",
     "smile/elasticsuite": ">=2.4.0"
   },
+  "require-dev": {
+     "smile/magento2-smilelab-quality-suite": "^1.1.0"
+   },
   "version": "1.0.0",
   "autoload": {
     "files": [
