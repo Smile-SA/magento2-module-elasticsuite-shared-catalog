@@ -83,6 +83,8 @@ class CollectionPlugin
     /**
      * Apply shared calatog filter catalog before loading collection.
      *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     *
      * @param ProductCollection $collection Product collection.
      * @param boolean           $printQuery Print the query.
      * @param boolean           $logQuery   Log the query.
