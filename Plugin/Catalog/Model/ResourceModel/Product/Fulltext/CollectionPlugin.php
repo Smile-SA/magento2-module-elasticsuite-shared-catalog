@@ -47,19 +47,18 @@ class CollectionPlugin
     private $storeManager;
 
     /**
-     * Constructor for ProductCollectionSetVisibility class.
+     * Constructor.
      *
-     * @param \Magento\Company\Model\CompanyContext $companyContext
-     * @param \Magento\SharedCatalog\Model\Config $config
-     * @param \Magento\SharedCatalog\Model\CustomerGroupManagement $customerGroupManagement
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Company\Model\CompanyContext                $companyContext          Company context.
+     * @param \Magento\SharedCatalog\Model\Config                  $config                  Shared catalog config.
+     * @param \Magento\SharedCatalog\Model\CustomerGroupManagement $customerGroupManagement Customer group manager.
+     * @param \Magento\Store\Model\StoreManagerInterface           $storeManager            Store manager.
      */
     public function __construct(
         \Magento\Company\Model\CompanyContext $companyContext,
         \Magento\SharedCatalog\Model\Config $config,
         \Magento\SharedCatalog\Model\CustomerGroupManagement $customerGroupManagement,
         \Magento\Store\Model\StoreManagerInterface $storeManager
-
     ) {
         $this->companyContext          = $companyContext;
         $this->config                  = $config;
@@ -67,6 +66,13 @@ class CollectionPlugin
         $this->storeManager            = $storeManager;
     }
 
+    /**
+     * Apply shared calatog filter catalog before getting collection size.
+     *
+     * @param ProductCollection $collection Product collection.
+     *
+     * @return array
+     */
     public function beforeGetSize(ProductCollection $collection)
     {
         $this->applySharedCatalogFilter($collection);
@@ -74,6 +80,15 @@ class CollectionPlugin
         return [];
     }
 
+    /**
+     * Apply shared calatog filter catalog before loading collection.
+     *
+     * @param ProductCollection $collection Product collection.
+     * @param boolean           $printQuery Print the query.
+     * @param boolean           $logQuery   Log the query.
+     *
+     * @return array
+     */
     public function beforeLoad(ProductCollection $collection, $printQuery = false, $logQuery = false)
     {
         $this->applySharedCatalogFilter($collection);
@@ -81,6 +96,13 @@ class CollectionPlugin
         return [$printQuery, $logQuery];
     }
 
+    /**
+     * Apply shared calatog filter catalog to the collection.
+     *
+     * @param ProductCollection $collection Product collection.
+     *
+     * @return $this
+     */
     private function applySharedCatalogFilter(ProductCollection $collection)
     {
         $customerGroupId = $this->companyContext->getCustomerGroupId();
@@ -92,6 +114,13 @@ class CollectionPlugin
         return $this;
     }
 
+    /**
+     * Check if the shared catalog feature is active for the customer group id.
+     *
+     * @param int $customerGroupId Customer group id.
+     *
+     * @return boolean
+     */
     private function isActive($customerGroupId)
     {
         $websiteId                = $this->storeManager->getWebsite()->getId();

@@ -30,6 +30,12 @@ class Data extends AbstractHelper
      */
     private $moduleManager;
 
+    /**
+     * Constructor.
+     *
+     * @param \Magento\Framework\App\Helper\Context $context       Context.
+     * @param \Magento\Framework\Module\Manager     $moduleManager Module manager.
+     */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Framework\Module\Manager $moduleManager
@@ -39,6 +45,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Check if the Magento_SharedCatalog is enabled.
+     *
      * @return boolean
      */
     public function isEnabled()

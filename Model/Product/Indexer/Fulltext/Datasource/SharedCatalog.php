@@ -37,6 +37,12 @@ class SharedCatalog implements DatasourceInterface
      */
     private $resourceModel;
 
+    /**
+     * Constructor.
+     *
+     * @param SharedCatalogHelper $helper        ElasticSuite Shared Catalog helper.
+     * @param ResourceModel       $resourceModel Resource model.
+     */
     public function __construct(SharedCatalogHelper $helper, ResourceModel $resourceModel)
     {
         $this->helper        = $helper;

@@ -25,6 +25,13 @@ use Smile\ElasticsuiteCatalog\Model\ResourceModel\Eav\Indexer\Indexer;
  */
 class SharedCatalog extends Indexer
 {
+    /**
+     * Load customer group ids for products.
+     *
+     * @param array $productIds Product ids
+     *
+     * @return array
+     */
     public function loadCustomerGroupsData($productIds)
     {
         $select = $this->getConnection()->select()
