@@ -22,7 +22,7 @@ Magento **>=2.4.1** Commerce (EE) | **1.3.x**           | ElasticSuite **2.10.x*
 Simply run these commands in your Magento install :
 
 ```
-composer require smile/module-elasticsuite-shared-catalog ~2.9.0
+composer require smile/module-elasticsuite-shared-catalog ~2.10.0
 bin/magento setup:upgrade
 ```
 
