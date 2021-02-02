@@ -109,7 +109,7 @@ class CollectionPlugin
     {
         $customerGroupId = $this->companyContext->getCustomerGroupId();
 
-        if ($this->isActive($customerGroupId) && !$collection->isLoaded()) {
+        if (!$collection->isLoaded() && $this->isActive($customerGroupId)) {
             $collection->addFieldToFilter("customer_group_id", $customerGroupId);
         }
 
