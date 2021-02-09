@@ -47,6 +47,11 @@ class CollectionPlugin
     private $storeManager;
 
     /**
+     * @var boolean[]
+     */
+    private $sharedCatalogStatusByGroup = [];
+
+    /**
      * Constructor.
      *
      * @param \Magento\Company\Model\CompanyContext                $companyContext          Company context.
@@ -109,7 +114,7 @@ class CollectionPlugin
     {
         $customerGroupId = $this->companyContext->getCustomerGroupId();
 
-        if ($this->isActive($customerGroupId) && !$collection->isLoaded()) {
+        if (!$collection->isLoaded() && $this->isActive($customerGroupId)) {
             $collection->addFieldToFilter("customer_group_id", $customerGroupId);
         }
 
@@ -125,10 +130,14 @@ class CollectionPlugin
      */
     private function isActive($customerGroupId)
     {
-        $websiteId                = $this->storeManager->getWebsite()->getId();
-        $isActive                 = $this->config->isActive(ScopeInterface::SCOPE_WEBSITE, $websiteId);
-        $isMasterCatalogAvailable = $this->customerGroupManagement->isMasterCatalogAvailable($customerGroupId);
+        if (!isset($this->sharedCatalogStatusByGroup[$customerGroupId])) {
+            $websiteId                = $this->storeManager->getWebsite()->getId();
+            $isActive                 = $this->config->isActive(ScopeInterface::SCOPE_WEBSITE, $websiteId);
+            $isMasterCatalogAvailable = $this->customerGroupManagement->isMasterCatalogAvailable($customerGroupId);
 
-        return $isActive && !$isMasterCatalogAvailable;
+            $this->sharedCatalogStatusByGroup[$customerGroupId] = $isActive && !$isMasterCatalogAvailable;
+        }
+
+        return $this->sharedCatalogStatusByGroup[$customerGroupId];
     }
 }
