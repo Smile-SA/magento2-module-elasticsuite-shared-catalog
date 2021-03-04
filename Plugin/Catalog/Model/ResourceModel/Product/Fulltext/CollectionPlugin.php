@@ -133,7 +133,7 @@ class CollectionPlugin
         if (!isset($this->sharedCatalogStatusByGroup[$customerGroupId])) {
             $websiteId                = $this->storeManager->getWebsite()->getId();
             $isActive                 = $this->config->isActive(ScopeInterface::SCOPE_WEBSITE, $websiteId);
-            $isMasterCatalogAvailable = $this->customerGroupManagement->isMasterCatalogAvailable($customerGroupId);
+            $isMasterCatalogAvailable = $this->customerGroupManagement->isPrimaryCatalogAvailable($customerGroupId);
 
             $this->sharedCatalogStatusByGroup[$customerGroupId] = $isActive && !$isMasterCatalogAvailable;
         }
