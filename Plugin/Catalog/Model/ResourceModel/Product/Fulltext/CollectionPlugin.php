@@ -16,6 +16,7 @@ namespace Smile\ElasticsuiteSharedCatalog\Plugin\Catalog\Model\ResourceModel\Pro
 
 use Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection as ProductCollection;
 use Magento\Store\Model\ScopeInterface;
+use Magento\SharedCatalog\Model\CustomerGroupManagement;
 
 /**
  * Fulltext product collection plugin.
@@ -133,7 +134,9 @@ class CollectionPlugin
         if (!isset($this->sharedCatalogStatusByGroup[$customerGroupId])) {
             $websiteId                = $this->storeManager->getWebsite()->getId();
             $isActive                 = $this->config->isActive(ScopeInterface::SCOPE_WEBSITE, $websiteId);
-            $isMasterCatalogAvailable = $this->customerGroupManagement->isMasterCatalogAvailable($customerGroupId);
+            $isMasterCatalogAvailable = method_exists(CustomerGroupManagement::class, 'isPrimaryCatalogAvailable') ?
+                                          $this->customerGroupManagement->isPrimaryCatalogAvailable($customerGroupId) :
+                                          $this->customerGroupManagement->isMasterCatalogAvailable($customerGroupId);
 
             $this->sharedCatalogStatusByGroup[$customerGroupId] = $isActive && !$isMasterCatalogAvailable;
         }
