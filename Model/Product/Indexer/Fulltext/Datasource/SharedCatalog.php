@@ -30,12 +30,12 @@ class SharedCatalog implements DatasourceInterface
     /**
      * @var SharedCatalogHelper
      */
-    private $helper;
+    private SharedCatalogHelper $helper;
 
     /**
      * @var ResourceModel
      */
-    private $resourceModel;
+    private ResourceModel $resourceModel;
 
     /**
      * Constructor.
@@ -43,7 +43,10 @@ class SharedCatalog implements DatasourceInterface
      * @param SharedCatalogHelper $helper        ElasticSuite Shared Catalog helper.
      * @param ResourceModel       $resourceModel Resource model.
      */
-    public function __construct(SharedCatalogHelper $helper, ResourceModel $resourceModel)
+    public function __construct(
+        SharedCatalogHelper $helper,
+        ResourceModel $resourceModel
+    )
     {
         $this->helper        = $helper;
         $this->resourceModel = $resourceModel;

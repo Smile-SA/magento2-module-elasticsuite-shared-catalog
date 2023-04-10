@@ -15,6 +15,8 @@
 namespace Smile\ElasticsuiteSharedCatalog\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Module\Manager as ModuleManager;
 
 /**
  * ElasticSuite Shared Catalog Helper
@@ -26,20 +28,21 @@ use Magento\Framework\App\Helper\AbstractHelper;
 class Data extends AbstractHelper
 {
     /**
-     * @var \Magento\Framework\Module\Manager
+     * @var ModuleManager
      */
-    private $moduleManager;
+    private ModuleManager $moduleManager;
 
     /**
      * Constructor.
      *
-     * @param \Magento\Framework\App\Helper\Context $context       Context.
-     * @param \Magento\Framework\Module\Manager     $moduleManager Module manager.
+     * @param Context       $context        Context.
+     * @param ModuleManager $moduleManager  Module manager.
      */
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context,
-        \Magento\Framework\Module\Manager $moduleManager
-    ) {
+        Context       $context,
+        ModuleManager $moduleManager
+    )
+    {
         parent::__construct($context);
         $this->moduleManager = $moduleManager;
     }
@@ -49,7 +52,7 @@ class Data extends AbstractHelper
      *
      * @return boolean
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return $this->moduleManager->isEnabled("Magento_SharedCatalog");
     }
