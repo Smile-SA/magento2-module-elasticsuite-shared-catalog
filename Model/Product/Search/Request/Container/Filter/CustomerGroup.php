@@ -35,32 +35,32 @@ class CustomerGroup implements FilterInterface
     /**
      * @var QueryFactory
      */
-    private $queryFactory;
+    private QueryFactory $queryFactory;
 
     /**
      * @var CompanyContext
      */
-    private $companyContext;
+    private CompanyContext $companyContext;
 
     /**
      * @var Config
      */
-    private $config;
+    private Config $config;
 
     /**
      * @var CustomerGroupManagement
      */
-    private $customerGroupManagement;
+    private CustomerGroupManagement $customerGroupManagement;
 
     /**
      * @var StoreManagerInterface
      */
-    private $storeManager;
+    private StoreManagerInterface $storeManager;
 
     /**
      * @var boolean[]
      */
-    private $sharedCatalogStatusByGroup = [];
+    private array $sharedCatalogStatusByGroup = [];
 
     /**
      * Customer group filter constructor.
